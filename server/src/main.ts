@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import fastifyStatic from "fastify-static";
+import fastifySwagger from "fastify-swagger";
 import path from "path";
 import { api } from "./api";
 
@@ -8,6 +9,11 @@ async function main() {
 
   server.register(fastifyStatic, {
     root: path.resolve(path.join(__dirname, "../../web/build")),
+  });
+
+  server.register(fastifySwagger, {
+    routePrefix: "/openapi",
+    exposeRoute: true,
   });
 
   server.get("/health", (req, res) => {
