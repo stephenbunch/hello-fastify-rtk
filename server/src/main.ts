@@ -3,6 +3,7 @@ import fastifyStatic from "fastify-static";
 import fastifySwagger from "fastify-swagger";
 import path from "path";
 import { api } from "./api";
+import { fastifyMikroOrm } from "./plugins/mikro-orm";
 
 async function main() {
   const server = fastify();
@@ -15,6 +16,8 @@ async function main() {
     routePrefix: "/openapi",
     exposeRoute: true,
   });
+
+  server.register(fastifyMikroOrm);
 
   server.get("/health", (req, res) => {
     res.send("ok");
