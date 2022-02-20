@@ -1,14 +1,14 @@
 import { Type } from "@sinclair/typebox";
 import type { FastifyPluginAsync } from "fastify";
-import { Todo, TodoSchema } from "../schema";
+import { TodoDto, TodoDtoType } from "../schema";
 
 export const getTodos: FastifyPluginAsync = async (fastify) => {
-  fastify.get<{ Reply: Todo[] }>(
+  fastify.get<{ Reply: TodoDto[] }>(
     "/todos",
     {
       schema: {
         response: {
-          200: Type.Array(TodoSchema),
+          200: Type.Array(TodoDtoType),
         },
       },
     },

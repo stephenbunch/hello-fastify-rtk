@@ -1,9 +1,12 @@
 import { Static, Type } from "@sinclair/typebox";
 
-export const TodoSchema = Type.Object({
-  id: Type.String(),
-  description: Type.String(),
-  completed: Type.Boolean(),
-});
+export const TodoDtoType = Type.Object(
+  {
+    id: Type.String(),
+    description: Type.String(),
+    completed: Type.Boolean(),
+  },
+  { $id: "TodoDto" }
+);
 
-export type Todo = Static<typeof TodoSchema>;
+export type TodoDto = Static<typeof TodoDtoType>;
