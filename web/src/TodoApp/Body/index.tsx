@@ -19,9 +19,9 @@ export function Body(props: BodyProps) {
 
   const toggleAll = useCallback(async () => {
     if (toggleAllChecked) {
-      await updateTodos({ input: { completed: false } });
+      await updateTodos({ values: { completed: false } });
     } else {
-      await updateTodos({ input: { completed: true } });
+      await updateTodos({ values: { completed: true } });
     }
   }, [toggleAllChecked, updateTodos]);
 

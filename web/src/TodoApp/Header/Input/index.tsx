@@ -14,7 +14,7 @@ export function Input() {
       if (e.key === Key.Enter && value !== "") {
         setLoading(true);
         try {
-          await createTodo({ input: { description: value } });
+          await createTodo({ description: value });
           setValue("");
         } finally {
           setLoading(false);

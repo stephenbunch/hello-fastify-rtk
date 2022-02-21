@@ -1,9 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  CreateTodoInput,
+  CreateTodoValues,
   Todo,
   TodoFilter,
-  UpdateTodoInput,
+  UpdateTodoValues,
 } from "server/src/api/types";
 
 const LIST = "LIST";
@@ -19,32 +19,35 @@ export const todoApi = createApi({
       providesTags: () => [{ type: "Todo", id: LIST }],
     }),
 
-    createTodo: builder.mutation<Todo, { input: CreateTodoInput }>({
+    createTodo: builder.mutation<Todo, CreateTodoValues>({
       query: (args) => ({
         url: `/todos`,
         method: "POST",
-        body: args.input,
+        body: args,
       }),
       invalidatesTags: () => [{ type: "Todo", id: LIST }],
     }),
 
-    updateTodo: builder.mutation<Todo, { id: string; input: UpdateTodoInput }>({
+    updateTodo: builder.mutation<
+      Todo,
+      { id: string; values: UpdateTodoValues }
+    >({
       query: (args) => ({
         url: `/todos/${args.id}`,
         method: "PATCH",
-        body: args.input,
+        body: args.values,
       }),
       invalidatesTags: () => [{ type: "Todo", id: LIST }],
     }),
 
     updateTodos: builder.mutation<
       Todo[],
-      { filter?: TodoFilter; input: UpdateTodoInput }
+      { filter?: TodoFilter; values: UpdateTodoValues }
     >({
       query: (args) => ({
         url: `/todos`,
         method: "PATCH",
-        body: args.input,
+        body: args.values,
         params: args.filter,
       }),
       invalidatesTags: () => [{ type: "Todo", id: LIST }],

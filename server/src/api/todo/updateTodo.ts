@@ -1,13 +1,18 @@
 import type { FastifyPluginAsync } from "fastify";
 import { TodoEntity } from "../../entities/TodoEntity";
 import { StatusCodes } from "http-status-codes";
-import { Todo, TodoType, UpdateTodoInput, UpdateTodoInputType } from "./types";
+import {
+  Todo,
+  TodoType,
+  UpdateTodoValues,
+  UpdateTodoValuesType,
+} from "./types";
 import { ByIdParams, ByIdParamsType } from "../types";
 
 export const updateTodo: FastifyPluginAsync = async (fastify) => {
   fastify.route<{
     Params: ByIdParams;
-    Body: UpdateTodoInput;
+    Body: UpdateTodoValues;
     Reply: Todo;
   }>({
     method: "PATCH",
@@ -15,7 +20,7 @@ export const updateTodo: FastifyPluginAsync = async (fastify) => {
 
     schema: {
       params: ByIdParamsType,
-      body: UpdateTodoInputType,
+      body: UpdateTodoValuesType,
       response: {
         [StatusCodes.OK]: TodoType,
       },

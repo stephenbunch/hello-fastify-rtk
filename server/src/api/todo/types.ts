@@ -6,12 +6,12 @@ export const TodoType = Type.Object({
   completed: Type.Boolean(),
 });
 
-export const CreateTodoInputType = Type.Intersect([
+export const CreateTodoValuesType = Type.Intersect([
   Type.Pick(Type.Partial(TodoType), ["completed"]),
   Type.Omit(TodoType, ["id", "completed"]),
 ]);
 
-export const UpdateTodoInputType = Type.Partial(Type.Omit(TodoType, ["id"]));
+export const UpdateTodoValuesType = Type.Partial(Type.Omit(TodoType, ["id"]));
 
 export const TodoFilterType = Type.Object({
   completed: Type.Optional(Type.Boolean()),
@@ -19,8 +19,8 @@ export const TodoFilterType = Type.Object({
 
 export type Todo = Static<typeof TodoType>;
 
-export type CreateTodoInput = Static<typeof CreateTodoInputType>;
+export type CreateTodoValues = Static<typeof CreateTodoValuesType>;
 
-export type UpdateTodoInput = Static<typeof UpdateTodoInputType>;
+export type UpdateTodoValues = Static<typeof UpdateTodoValuesType>;
 
 export type TodoFilter = Static<typeof TodoFilterType>;

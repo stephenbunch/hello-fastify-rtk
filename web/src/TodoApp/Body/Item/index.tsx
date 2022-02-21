@@ -21,7 +21,7 @@ export function Item(props: TodoItemProps) {
   const [description, setDescription] = useState("");
 
   const commitDescription = useCallback(async () => {
-    await updateTodoMutation({ id: todo.id, input: { description } });
+    await updateTodoMutation({ id: todo.id, values: { description } });
     setEditing(false);
     setDescription("");
   }, [todo, description, updateTodoMutation]);
@@ -46,7 +46,7 @@ export function Item(props: TodoItemProps) {
   const markCompleted = useCallback(async () => {
     await updateTodoMutation({
       id: todo.id,
-      input: { completed: !todo.completed },
+      values: { completed: !todo.completed },
     });
   }, [todo, updateTodoMutation]);
 

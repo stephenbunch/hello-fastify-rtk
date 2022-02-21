@@ -8,14 +8,14 @@ import {
   TodoFilter,
   TodoFilterType,
   TodoType,
-  UpdateTodoInput,
-  UpdateTodoInputType,
+  UpdateTodoValues,
+  UpdateTodoValuesType,
 } from "./types";
 
 export const updateTodos: FastifyPluginAsync = async (fastify) => {
   fastify.route<{
     Querystring: TodoFilter;
-    Body: UpdateTodoInput;
+    Body: UpdateTodoValues;
     Reply: Todo[];
   }>({
     method: "PATCH",
@@ -23,7 +23,7 @@ export const updateTodos: FastifyPluginAsync = async (fastify) => {
 
     schema: {
       querystring: TodoFilterType,
-      body: UpdateTodoInputType,
+      body: UpdateTodoValuesType,
       response: {
         [StatusCodes.OK]: Type.Array(TodoType),
       },

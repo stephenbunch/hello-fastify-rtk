@@ -2,15 +2,20 @@ import { Type } from "@sinclair/typebox";
 import type { FastifyPluginAsync } from "fastify";
 import { TodoEntity } from "../../entities/TodoEntity";
 import { StatusCodes } from "http-status-codes";
-import { CreateTodoInput, CreateTodoInputType, Todo, TodoType } from "./types";
+import {
+  CreateTodoValues,
+  CreateTodoValuesType,
+  Todo,
+  TodoType,
+} from "./types";
 
 export const createTodo: FastifyPluginAsync = async (fastify) => {
-  fastify.route<{ Body: CreateTodoInput; Reply: Todo }>({
+  fastify.route<{ Body: CreateTodoValues; Reply: Todo }>({
     method: "POST",
     url: "/todos",
 
     schema: {
-      body: CreateTodoInputType,
+      body: CreateTodoValuesType,
       response: {
         [StatusCodes.CREATED]: Type.Array(TodoType),
       },
