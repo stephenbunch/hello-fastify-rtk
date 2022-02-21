@@ -8,5 +8,13 @@
   "workspaces": [
     "server",
     "web"
-  ]
+  ],
+  "cacheDirectories": [
+    "node_modules",
+    "server/node_modules",
+    "web/node_modules"
+  ],
+  "engines": {
+    "node": "17.3.1"
+  }
 }
