@@ -1,5 +1,10 @@
 {
   "private": true,
+  "scripts": {
+    "start": "yarn workspace server start",
+    "release": "yarn workspace server migrate",
+    "build": "yarn workspace server build && yarn workspace web build"
+  },
   "workspaces": [
     "server",
     "web"
